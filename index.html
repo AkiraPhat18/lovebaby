@@ -76,10 +76,37 @@
 
     <p>LOVE YOU BABE</p>
 
-    <div class="music">
-        <iframe scrolling="no" frameborder="no" allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&color=%23ff5500&auto_play=true&hide_related=false">
-        </iframe>
-    </div>
+   <!-- Nhạc nền (ẩn khỏi màn hình) -->
+<div class="music" style="position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; left:-9999px; top:0;">
+    <iframe id="sc-player" width="300" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&auto_play=true&hide_related=true&show_comments=false&visual=false">
+    </iframe>
+</div>
+
+<!-- Bật nhạc tự động khi có thể -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+    var widget = SC.Widget(document.getElementById('sc-player'));
+
+    // Thử phát ngay khi trình phát tải xong
+    widget.bind(SC.Widget.Events.READY, function () {
+        widget.play();
+    });
+
+    // Trình duyệt chặn tự phát thì phát ở lần chạm/click đầu tiên
+    function startMusic() {
+        widget.play();
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+    }
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+
+    // Phát lặp lại khi hết bài
+    widget.bind(SC.Widget.Events.FINISH, function () {
+        widget.seekTo(0);
+        widget.play();
+    });
+</script>
 </body>
 </html>
