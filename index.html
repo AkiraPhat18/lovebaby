@@ -7,23 +7,79 @@
     <title>I Love You</title>
     <link rel="stylesheet" href="./Heart.css">
     <link rel="shortcut icon" href="./Heart.png">
+
+    <!-- Ghi đè bố cục: 2 người nằm ngang, trái tim ở giữa -->
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .stage .img {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            margin: 0 !important;
+            flex: 0 0 40%;
+            height: 60vh;
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+        }
+
+        /* Đẩy ảnh sát vào giữa để 2 tay gần trái tim */
+        #imgleft  { background-position: right center !important; }
+        #imgright { background-position: left center !important; }
+
+        .stage .heart {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            margin: 0 !important;
+            flex: 0 0 auto;
+            z-index: 10;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="heart">
-        <div class="left"></div>
-        <div class="right"></div>
-    </div>
-
-    <div class="image">
+    <div class="stage">
         <div class="img" id="imgleft"></div>
+
+        <div class="heart">
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+
         <div class="img" id="imgright"></div>
     </div>
-    <p>LOVE YOU BABY</p>
+
+    <p>LOVE YOU BABE</p>
 
     <div class="music">
-    <iframe scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&color=%23ff5500&auto_play=true&hide_related=false">
-    </iframe>
-</div>
+        <iframe scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&color=%23ff5500&auto_play=true&hide_related=false">
+        </iframe>
+    </div>
 </body>
 </html>
