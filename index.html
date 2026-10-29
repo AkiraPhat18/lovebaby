@@ -7,60 +7,6 @@
     <title>I Love You</title>
     <link rel="stylesheet" href="./Heart.css">
     <link rel="shortcut icon" href="./Heart.png">
-
-    <!-- Ghi đè bố cục: 2 người nằm ngang, trái tim ở giữa -->
-    <style>
-        body {
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .stage {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        .stage .img {
-            position: relative !important;
-            top: auto !important;
-            left: auto !important;
-            right: auto !important;
-            bottom: auto !important;
-            margin: 0 !important;
-            flex: 0 0 40%;
-            height: 60vh;
-            background-size: contain !important;
-            background-repeat: no-repeat !important;
-        }
-
-        /* Đẩy ảnh sát vào giữa để 2 tay gần trái tim */
-        #imgleft  { background-position: right center !important; }
-        #imgright { background-position: left center !important; }
-
-        .stage .heart {
-            position: relative !important;
-            top: auto !important;
-            left: auto !important;
-            right: auto !important;
-            bottom: auto !important;
-            margin: 0 !important;
-            flex: 0 0 auto;
-            z-index: 10;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
     <div class="stage">
@@ -74,39 +20,31 @@
         <div class="img" id="imgright"></div>
     </div>
 
-    <p>LOVE YOU BABE</p>
+    <p>LOVE YOU BABY</p>
 
-   <!-- Nhạc nền (ẩn khỏi màn hình) -->
-<div class="music" style="position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; left:-9999px; top:0;">
-    <iframe id="sc-player" width="300" height="166" scrolling="no" frameborder="no" allow="autoplay"
-        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&auto_play=true&hide_related=true&show_comments=false&visual=false">
-    </iframe>
-</div>
+    <div class="music">
+        <iframe id="sc-player" width="300" height="166" scrolling="no" frameborder="no" allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/user-73827147/offical-audio-ghe-qua-dick-ft-pc-n-tofu&auto_play=true&hide_related=true&show_comments=false&visual=false">
+        </iframe>
+    </div>
 
-<!-- Bật nhạc tự động khi có thể -->
-<script src="https://w.soundcloud.com/player/api.js"></script>
-<script>
-    var widget = SC.Widget(document.getElementById('sc-player'));
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script>
+        var widget = SC.Widget(document.getElementById('sc-player'));
+        widget.bind(SC.Widget.Events.READY, function () { widget.play(); });
 
-    // Thử phát ngay khi trình phát tải xong
-    widget.bind(SC.Widget.Events.READY, function () {
-        widget.play();
-    });
+        function startMusic() {
+            widget.play();
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
 
-    // Trình duyệt chặn tự phát thì phát ở lần chạm/click đầu tiên
-    function startMusic() {
-        widget.play();
-        document.removeEventListener('click', startMusic);
-        document.removeEventListener('touchstart', startMusic);
-    }
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
-
-    // Phát lặp lại khi hết bài
-    widget.bind(SC.Widget.Events.FINISH, function () {
-        widget.seekTo(0);
-        widget.play();
-    });
-</script>
+        widget.bind(SC.Widget.Events.FINISH, function () {
+            widget.seekTo(0);
+            widget.play();
+        });
+    </script>
 </body>
 </html>
